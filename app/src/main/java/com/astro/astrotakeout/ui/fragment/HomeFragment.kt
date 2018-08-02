@@ -1,6 +1,7 @@
 package com.astro.astrotakeout.ui.fragment
 
 import android.app.Fragment
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.astro.astrotakeout.R
 import com.astro.astrotakeout.ui.adapter.HomeRvAdapter
+import com.astro.astrotakeout.utils.Utils
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.find
 
 /**
@@ -19,6 +22,11 @@ class HomeFragment : Fragment() {
 
     private val datas = ArrayList<String>()
     private lateinit var homeRvAdapter: HomeRvAdapter
+    private lateinit var rvHome: RecyclerView
+
+    private var sum = 0
+    private var distance = Utils.dp2px(activity, 120)
+    private var alpha = 55
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = View.inflate(activity, R.layout.fragment_home, null)
@@ -37,10 +45,32 @@ class HomeFragment : Fragment() {
         }
 
         homeRvAdapter.setData(datas)
+
+        rvHome.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                sum += dy
+
+                if (sum > distance) {
+                    alpha = 255
+                } else {
+                    alpha = sum * 200 / distance
+                    alpha += 55
+                }
+
+                ll_title_container.setBackgroundColor(Color.argb(alpha, 0x31, 0x90, 0xe8))
+
+            }
+        })
+
     }
 
     private fun initView(view: View) {
-        val rvHome = view.find<RecyclerView>(R.id.rv_home)
+        rvHome = view.find<RecyclerView>(R.id.rv_home)
         rvHome.layoutManager = LinearLayoutManager(activity)
         homeRvAdapter = HomeRvAdapter(activity)
         rvHome.adapter = homeRvAdapter

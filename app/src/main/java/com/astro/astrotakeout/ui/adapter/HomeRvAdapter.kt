@@ -4,10 +4,12 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.astro.astrotakeout.R
+import com.daimajia.slider.library.SliderLayout
+import com.daimajia.slider.library.SliderTypes.TextSliderView
 import org.jetbrains.anko.find
-import java.util.ArrayList
+import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Created by chenAstro at 下午3:25 on 2018/8/2.
@@ -37,9 +39,9 @@ class HomeRvAdapter(private val context: Context) : RecyclerView.Adapter<Recycle
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            TYPE_TITLE -> TitleItemHolder(View.inflate(context, R.layout.item_home_common, null))
-            TYPE_SELLER -> SellerItemHolder(View.inflate(context, R.layout.item_home_common, null))
-            else -> SellerItemHolder(View.inflate(context, R.layout.item_home_common, null))
+            TYPE_TITLE -> TitleItemHolder(View.inflate(context, R.layout.item_title, null))
+            TYPE_SELLER -> SellerItemHolder(View.inflate(context, R.layout.item_seller, null))
+            else -> SellerItemHolder(View.inflate(context, R.layout.item_title, null))
         }
 
     }
@@ -64,21 +66,34 @@ class HomeRvAdapter(private val context: Context) : RecyclerView.Adapter<Recycle
     }
 
     inner class TitleItemHolder(item: View) : RecyclerView.ViewHolder(item) {
+        val urlMaps = HashMap<String, String>()
 
-        private val textView: TextView = item.find(R.id.tv)
+        private val sliderLayout: SliderLayout = item.find(R.id.slider)
 
         fun bindData(s: String) {
-            textView.text = s
+            if (urlMaps.isEmpty()) {
+                urlMaps["Hannibal"] = "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg"
+                urlMaps["Big Bang Theory"] = "http://tvfiles.alphacoders.com/100/hdclearart-10.png"
+                urlMaps["House of Cards"] = "http://cdn3.nflximg.net/images/3093/2043093.jpg"
+                urlMaps["Game of Thrones"] = "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg"
+
+                for ((key, value) in urlMaps) {
+                    val textSliderView = TextSliderView(context)
+                    textSliderView.description(key)
+                            .image(value)
+                    sliderLayout.addSlider(textSliderView)
+                }
+            }
         }
     }
 
 
     inner class SellerItemHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-        private val textView: TextView = item.find(R.id.tv)
+//        private val textView: TextView = item.find(R.id.tv)
 
         fun bindData(s: String) {
-            textView.text = s
+//            textView.text = s
         }
     }
 }
