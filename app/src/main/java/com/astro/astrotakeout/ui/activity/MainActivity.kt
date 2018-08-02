@@ -1,12 +1,22 @@
-package com.astro.astrotakeout
+package com.astro.astrotakeout.ui.activity
 
+import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
+import com.astro.astrotakeout.R
+import com.astro.astrotakeout.ui.fragment.HomeFragment
+import com.astro.astrotakeout.ui.fragment.MoreFragment
+import com.astro.astrotakeout.ui.fragment.OrderFragment
+import com.astro.astrotakeout.ui.fragment.UserFragment
+import com.astro.astrotakeout.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
+    private val fragments = listOf<Fragment>(HomeFragment(), OrderFragment(), UserFragment(), MoreFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +27,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
 
+        initNavigationBar()
+
         initMainBottomBar()
 
+        changeIndex(0)
+
+    }
+
+    private fun initNavigationBar() {
+        if (Utils.checkDeviceHasNavigationBar(this)) {
+            ll_main_activity.setPadding(0, 0, 0, Utils.dp2px(this, 50))
+        }
     }
 
     private fun initMainBottomBar() {
@@ -38,6 +58,8 @@ class MainActivity : AppCompatActivity() {
                 setEnable(ll_main_bottom_bar.getChildAt(i), true)
             }
         }
+
+        fragmentManager.beginTransaction().replace(R.id.fl_layout_content, fragments[index]).commit()
 
     }
 
