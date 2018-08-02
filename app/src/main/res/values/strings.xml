@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AstroTakeout</string>
+
     <string name="main_bottom_bar_tab_home">首页</string>
+    <string name="main_bottom_bar_tab_order">订单</string>
+    <string name="main_bottom_bar_tab_me">个人</string>
+    <string name="main_bottom_bar_tab_more">更多</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +7,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+        android:id="@+id/fl_layout_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -31,14 +31,15 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:src="@drawable/selector_main_bottom_bar_home"/>
+                android:src="@drawable/selector_main_bottom_bar_home" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                android:text="@string/main_bottom_bar_tab_home"/>
+                android:text="@string/main_bottom_bar_tab_home"
+                android:textColor="@drawable/selector_main_bottom_bar_tv" />
 
         </FrameLayout>
 
@@ -47,6 +48,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/selector_main_bottom_bar_order" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@string/main_bottom_bar_tab_order"
+                android:textColor="@drawable/selector_main_bottom_bar_tv" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -54,12 +68,38 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/selector_main_bottom_bar_me" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@string/main_bottom_bar_tab_me"
+                android:textColor="@drawable/selector_main_bottom_bar_tv" />
+
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/selector_main_bottom_bar_more" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@string/main_bottom_bar_tab_more"
+                android:textColor="@drawable/selector_main_bottom_bar_tv" />
 
         </FrameLayout>
 
