@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
 
         initMainBottomBar()
+
     }
 
     private fun initMainBottomBar() {
-
         for (i in 0 until ll_main_bottom_bar.childCount) {
             ll_main_bottom_bar.getChildAt(i).setOnClickListener {
                 changeIndex(i)
@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeIndex(index: Int) {
-
         for (i in 0 until ll_main_bottom_bar.childCount) {
             if (i == index) {
                 // When the view's status is selected  -> isEnable = false
