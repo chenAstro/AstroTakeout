@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var rvHome: RecyclerView
 
     private var sum = 0
-    private var distance = Utils.dp2px(activity, 120)
+    private var distance = 0
     private var alpha = 55
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -43,6 +43,8 @@ class HomeFragment : Fragment() {
         for (i in 0 until 100) {
             datas.add("我是商家  $i")
         }
+
+        distance = Utils.dp2px(activity, 120)
 
         homeRvAdapter.setData(datas)
 
