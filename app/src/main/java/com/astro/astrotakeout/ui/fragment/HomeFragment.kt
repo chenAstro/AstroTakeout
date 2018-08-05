@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.astro.astrotakeout.R
+import com.astro.astrotakeout.presenter.HomeFragmentPresenter
 import com.astro.astrotakeout.ui.adapter.HomeRvAdapter
 import com.astro.astrotakeout.utils.Utils
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,6 +24,8 @@ class HomeFragment : Fragment() {
     private val datas = ArrayList<String>()
     private lateinit var homeRvAdapter: HomeRvAdapter
     private lateinit var rvHome: RecyclerView
+
+    private lateinit var homeFragmentPresenter: HomeFragmentPresenter
 
     private var sum = 0
     private var distance = 0
@@ -76,5 +79,15 @@ class HomeFragment : Fragment() {
         rvHome.layoutManager = LinearLayoutManager(activity)
         homeRvAdapter = HomeRvAdapter(activity)
         rvHome.adapter = homeRvAdapter
+
+        homeFragmentPresenter = HomeFragmentPresenter(this)
+    }
+
+    fun onLoadDatasSuccess() {
+
+    }
+
+    fun onLoadDatasFailed() {
+
     }
 }
