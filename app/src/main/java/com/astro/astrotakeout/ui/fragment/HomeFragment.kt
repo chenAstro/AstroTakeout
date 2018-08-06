@@ -14,6 +14,7 @@ import com.astro.astrotakeout.ui.adapter.HomeRvAdapter
 import com.astro.astrotakeout.utils.Utils
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 
 /**
  * Created by chenAstro at 下午1:27 on 2018/8/2.
@@ -43,11 +44,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initData() {
-        for (i in 0 until 100) {
-            datas.add("我是商家  $i")
-        }
+//        for (i in 0 until 100) {
+//            datas.add("我是商家  $i")
+//        }
 
-        distance = Utils.dp2px(activity, 120)
+        homeFragmentPresenter.getHomeFragmentDataInfo()
 
         homeRvAdapter.setData(datas)
 
@@ -75,19 +76,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView(view: View) {
+        distance = Utils.dp2px(activity, 120)
+
         rvHome = view.find<RecyclerView>(R.id.rv_home)
         rvHome.layoutManager = LinearLayoutManager(activity)
         homeRvAdapter = HomeRvAdapter(activity)
         rvHome.adapter = homeRvAdapter
 
         homeFragmentPresenter = HomeFragmentPresenter(this)
-    }
-
-    fun onLoadDatasSuccess() {
 
     }
 
-    fun onLoadDatasFailed() {
+    fun onLoadDataSuccess() {
+        toast("获取首页商家数据成功")
+    }
 
+    fun onLoadDataFailed() {
+        toast("获取首页商家数据失败")
     }
 }
